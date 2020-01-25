@@ -43,6 +43,9 @@
             this.label8 = new System.Windows.Forms.Label();
             this.radioButtonFemale = new System.Windows.Forms.RadioButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.buttonFind = new System.Windows.Forms.Button();
+            this.textBoxID = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
             this.radioButtonMale = new System.Windows.Forms.RadioButton();
             this.buttonUploadPic = new System.Windows.Forms.Button();
             this.pictureBoxTeacherImage = new System.Windows.Forms.PictureBox();
@@ -56,9 +59,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.textBoxID = new System.Windows.Forms.TextBox();
-            this.buttonFind = new System.Windows.Forms.Button();
+            this.buttonDownloadPic = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTeacherImage)).BeginInit();
@@ -96,6 +97,7 @@
             this.textBoxMobile.Name = "textBoxMobile";
             this.textBoxMobile.Size = new System.Drawing.Size(278, 32);
             this.textBoxMobile.TabIndex = 19;
+            this.textBoxMobile.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxMobile_KeyPress);
             // 
             // textBoxMail
             // 
@@ -203,6 +205,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.buttonDownloadPic);
             this.groupBox1.Controls.Add(this.buttonFind);
             this.groupBox1.Controls.Add(this.textBoxID);
             this.groupBox1.Controls.Add(this.label12);
@@ -227,6 +230,37 @@
             this.groupBox1.TabIndex = 15;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Личне данные";
+            // 
+            // buttonFind
+            // 
+            this.buttonFind.BackColor = System.Drawing.Color.Navy;
+            this.buttonFind.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonFind.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonFind.ForeColor = System.Drawing.Color.White;
+            this.buttonFind.Location = new System.Drawing.Point(383, 44);
+            this.buttonFind.Name = "buttonFind";
+            this.buttonFind.Size = new System.Drawing.Size(145, 32);
+            this.buttonFind.TabIndex = 19;
+            this.buttonFind.Text = "Найти";
+            this.buttonFind.UseVisualStyleBackColor = false;
+            this.buttonFind.Click += new System.EventHandler(this.buttonFind_Click);
+            // 
+            // textBoxID
+            // 
+            this.textBoxID.Location = new System.Drawing.Point(178, 44);
+            this.textBoxID.Name = "textBoxID";
+            this.textBoxID.Size = new System.Drawing.Size(199, 32);
+            this.textBoxID.TabIndex = 18;
+            this.textBoxID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxID_KeyPress);
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(9, 47);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(136, 23);
+            this.label12.TabIndex = 17;
+            this.label12.Text = "Код учителя:";
             // 
             // radioButtonMale
             // 
@@ -347,33 +381,16 @@
             this.label5.TabIndex = 4;
             this.label5.Text = "Дата Рождения";
             // 
-            // label12
+            // buttonDownloadPic
             // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(9, 47);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(136, 23);
-            this.label12.TabIndex = 17;
-            this.label12.Text = "Код учителя:";
-            // 
-            // textBoxID
-            // 
-            this.textBoxID.Location = new System.Drawing.Point(178, 44);
-            this.textBoxID.Name = "textBoxID";
-            this.textBoxID.Size = new System.Drawing.Size(199, 32);
-            this.textBoxID.TabIndex = 18;
-            // 
-            // buttonFind
-            // 
-            this.buttonFind.BackColor = System.Drawing.Color.Navy;
-            this.buttonFind.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.buttonFind.ForeColor = System.Drawing.Color.White;
-            this.buttonFind.Location = new System.Drawing.Point(383, 44);
-            this.buttonFind.Name = "buttonFind";
-            this.buttonFind.Size = new System.Drawing.Size(145, 32);
-            this.buttonFind.TabIndex = 19;
-            this.buttonFind.Text = "Найти";
-            this.buttonFind.UseVisualStyleBackColor = false;
+            this.buttonDownloadPic.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.buttonDownloadPic.Location = new System.Drawing.Point(10, 433);
+            this.buttonDownloadPic.Name = "buttonDownloadPic";
+            this.buttonDownloadPic.Size = new System.Drawing.Size(138, 46);
+            this.buttonDownloadPic.TabIndex = 20;
+            this.buttonDownloadPic.Text = "Скачать";
+            this.buttonDownloadPic.UseVisualStyleBackColor = true;
+            this.buttonDownloadPic.Click += new System.EventHandler(this.buttonDownloadPic_Click);
             // 
             // editTeacherForm
             // 
@@ -432,5 +449,6 @@
         internal System.Windows.Forms.TextBox textBoxName;
         internal System.Windows.Forms.TextBox textBoxSname;
         internal System.Windows.Forms.TextBox textBoxID;
+        private System.Windows.Forms.Button buttonDownloadPic;
     }
 }

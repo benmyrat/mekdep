@@ -3,11 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using MySql.Data.MySqlClient;
 namespace eSchool
 {
     public partial class editTeacherForm : Form
@@ -46,7 +44,7 @@ namespace eSchool
         }
         private void buttonEditTeacher_Click(object sender, EventArgs e)
         {
-            var id = Convert.ToInt32(textBoxID.Text);
+            int id = Convert.ToInt32(textBoxID.Text);
             string surname = textBoxSname.Text;
             string name = textBoxName.Text;
             string patronymic = textBoxPname.Text;
@@ -89,22 +87,111 @@ namespace eSchool
 
         private void buttonRemove_Click(object sender, EventArgs e)
         {
-            int id = Convert.ToInt32(textBoxID.Text);
-            //запрос потверждении удалении
-            if (MessageBox.Show("Вы действительно хотите удалить эти данные?", "Удаление", MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question) == DialogResult.Yes)
+            try
             {
-                if (iTeacher.deleteTeacher(id))
+                int id = Convert.ToInt32(textBoxID.Text);
+                //запрос потверждении удалении
+                if (MessageBox.Show("Вы действительно хотите удалить эти данные?", "Удаление", MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    MessageBox.Show("Учитель удалён", "Операция выполнена", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    textBoxPname.Text = ""; textBoxSname.Text = ""; textBoxName.Text = ""; radioButtonMale.Checked = true;
-                    pictureBoxTeacherImage.Image = null; dateTimePicker1.Value = DateTime.Now; textBoxPassword.Text = "";
-                    textBoxAddress.Text = ""; textBoxMobile.Text = ""; textBoxMail.Text = ""; textBoxLogin.Text = ""; textBoxID.Text = "";
+                    if (iTeacher.deleteTeacher(id))
+                    {
+                        MessageBox.Show("Учитель удалён", "Операция выполнена", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        textBoxPname.Text = ""; textBoxSname.Text = ""; textBoxName.Text = ""; radioButtonMale.Checked = true;
+                        pictureBoxTeacherImage.Image = null; dateTimePicker1.Value = DateTime.Now; textBoxPassword.Text = "";
+                        textBoxAddress.Text = ""; textBoxMobile.Text = ""; textBoxMail.Text = ""; textBoxLogin.Text = ""; textBoxID.Text = "";
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Учитель не удалён", "Операция отменена", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            else
+            catch
             {
-                MessageBox.Show("Учитель не удалён", "Операция отменена", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Извините невозможно удалить", "Ошибка при выполнении операции", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+
+        private void buttonFind_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int id = Convert.ToInt32(textBoxID.Text);
+                databaseConnection db = new databaseConnection();
+                MySql.Data.MySqlClient.MySqlCommand command = new MySqlCommand("SELECT `id`, `surName`, `name`, `patronymic`, `gender`, `birthDate`, `address`, `mail`, `mobile`, `login`, `pass`, `teacherPic` FROM `iteacher` WHERE `id`=" + id, db.getConnection);
+                DataTable table = iTeacher.getTeachers(command);
+                if (table.Rows.Count > 0)
+                {
+                    textBoxID.Text = table.Rows[0]["id"].ToString();
+                    textBoxSname.Text = table.Rows[0]["surName"].ToString();
+                    textBoxName.Text = table.Rows[0]["name"].ToString();
+                    textBoxPname.Text = table.Rows[0]["patronymic"].ToString();
+                    //пол
+                    if (table.Rows[0]["gender"].ToString() == "Female")
+                    {
+                        radioButtonFemale.Checked = true;
+                    }
+                    else
+                    {
+                        radioButtonMale.Checked = true;
+                    }
+
+                    dateTimePicker1.Value = (DateTime)table.Rows[0]["birthDate"];
+
+                    textBoxAddress.Text = table.Rows[0]["address"].ToString();
+                    textBoxMail.Text = table.Rows[0]["mail"].ToString();
+                    textBoxMobile.Text = table.Rows[0]["mobile"].ToString();
+                    textBoxLogin.Text = table.Rows[0]["login"].ToString();
+                    textBoxPassword.Text = table.Rows[0]["pass"].ToString();
+                    //тут его фотка
+                    byte[] pic = (byte[])table.Rows[0]["teacherPic"];
+                    MemoryStream picture = new MemoryStream(pic);
+                    pictureBoxTeacherImage.Image = Image.FromStream(picture);
+                }
+                else
+                {
+                    MessageBox.Show("Извините но такой код в нашей базе нету", "Ошибка в поисках", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Извините но такой код в нашей базе нету", "Ошибка в поисках", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void textBoxID_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //Запрет использование всё кроме чисел
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void textBoxMobile_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //Запрет использование всё кроме чисел
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void buttonDownloadPic_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog svf = new SaveFileDialog();
+            //при скачке авто данные
+            svf.FileName = "Код_учителья: " + textBoxID.Text;
+            //проверяем изображение есть или нет
+            if (pictureBoxTeacherImage.Image == null)
+            {
+                MessageBox.Show("Невозможно скачать", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if (svf.ShowDialog() == DialogResult.OK)
+            {
+                pictureBoxTeacherImage.Image.Save(svf.FileName + (".") + System.Drawing.Imaging.ImageFormat.Jpeg.ToString());
             }
         }
     }

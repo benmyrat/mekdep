@@ -102,5 +102,46 @@ namespace eSchool
             }
         }
 
+
+        //функция статистика
+        public string execCount(string query)
+        {
+            MySqlCommand command = new MySqlCommand(query, connection.getConnection);
+            connection.openConnection();
+            string count = command.ExecuteScalar().ToString();
+            connection.closeConnection();
+            return count;
+        }
+        //получаю общую сумму учителей
+        public string totalTeacher()
+        {
+            return execCount("SELECT COUNT(*) FROM `iteacher`");
+        }
+
+        // мужики
+        public string totalMale()
+        {
+            return execCount("SELECT COUNT(*) FROM `iteacher` WHERE `gender`='Мужчина'");
+        }
+
+        // Дамы
+        public string totalFemale()
+        {
+            return execCount("SELECT COUNT(*) FROM `iteacher` WHERE `gender`='Женщина'");
+        }
+
+
+
+
+        public DataTable getAllTeachersListBox()
+        {
+            MySqlCommand command = new MySqlCommand("SELECT * FROM  `iteacher`", connection.getConnection);
+            MySqlDataAdapter adapter = new MySqlDataAdapter(command);
+            DataTable table = new DataTable();
+            adapter.Fill(table);
+            connection.openConnection();
+            
+            return table;
+        }
     }
 }

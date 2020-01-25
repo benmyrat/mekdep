@@ -17,3 +17,6 @@ D:\Development\MyProjects\C#\eSchool\obj\Debug\eSchool.csproj.CopyComplete
 D:\Development\MyProjects\C#\eSchool\obj\Debug\eSchool.addTeacherForm.resources
 D:\Development\MyProjects\C#\eSchool\obj\Debug\eSchool.listTeacherForm.resources
 D:\Development\MyProjects\C#\eSchool\obj\Debug\eSchool.editTeacherForm.resources
+D:\Development\MyProjects\C#\eSchool\obj\Debug\eSchool.statisticTeacherForm.resources
+D:\Development\MyProjects\C#\eSchool\obj\Debug\eSchool.manageTeacherForm.resources
+D:\Development\MyProjects\C#\eSchool\obj\Debug\eSchool.csproj.ResolveComReference.cache

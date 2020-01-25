@@ -71,5 +71,41 @@ namespace eSchool
                 editTeacher.Show();
             }
         }
+
+        private void статистикаToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            statisticTeacherForm statisticTeacher = new statisticTeacherForm();
+            bool exit = false;
+            for (int i = 0; i < this.MdiChildren.Length; i++)
+            {
+                if (this.MdiChildren[i].Name == "addTeacherForm")
+                {
+                    exit = true;
+                }
+            }
+            if (exit == false)
+            {
+                statisticTeacher.MdiParent = this;
+                statisticTeacher.Show();
+            }
+        }
+
+        private void управлятьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            manageTeacherForm manageTeacher = new manageTeacherForm();
+            bool exit = false;
+            for (int i = 0; i < this.MdiChildren.Length; i++)
+            {
+                if (this.MdiChildren[i].Name == "addTeacherForm")
+                {
+                    exit = true;
+                }
+            }
+            if (exit == false)
+            {
+                manageTeacher.MdiParent = this;
+                manageTeacher.Show();
+            }
+        }
     }
 }

@@ -120,12 +120,14 @@
             this.управлятьToolStripMenuItem.Name = "управлятьToolStripMenuItem";
             this.управлятьToolStripMenuItem.Size = new System.Drawing.Size(185, 28);
             this.управлятьToolStripMenuItem.Text = "Управлять";
+            this.управлятьToolStripMenuItem.Click += new System.EventHandler(this.управлятьToolStripMenuItem_Click);
             // 
             // статистикаToolStripMenuItem
             // 
             this.статистикаToolStripMenuItem.Name = "статистикаToolStripMenuItem";
             this.статистикаToolStripMenuItem.Size = new System.Drawing.Size(185, 28);
             this.статистикаToolStripMenuItem.Text = "Статистика";
+            this.статистикаToolStripMenuItem.Click += new System.EventHandler(this.статистикаToolStripMenuItem_Click);
             // 
             // посмотретьToolStripMenuItem
             // 
