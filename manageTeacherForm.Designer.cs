@@ -37,7 +37,6 @@
             this.buttonPrintXlsx = new System.Windows.Forms.Button();
             this.buttonPrintTXT = new System.Windows.Forms.Button();
             this.buttonPrintDocx = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
             this.groupBoxSort = new System.Windows.Forms.GroupBox();
             this.buttonReset = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -58,9 +57,6 @@
             this.radioButtonFemale = new System.Windows.Forms.RadioButton();
             this.radioButtonMale = new System.Windows.Forms.RadioButton();
             this.radioButtonAll = new System.Windows.Forms.RadioButton();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
             this.buttonSearcher = new System.Windows.Forms.Button();
             this.textBoxSearch = new System.Windows.Forms.TextBox();
             this.sFileDialog = new System.Windows.Forms.SaveFileDialog();
@@ -103,11 +99,7 @@
             // 
             this.groupBox1.Controls.Add(this.panel1);
             this.groupBox1.Controls.Add(this.groupBox3);
-            this.groupBox1.Controls.Add(this.button6);
             this.groupBox1.Controls.Add(this.groupBoxSort);
-            this.groupBox1.Controls.Add(this.button5);
-            this.groupBox1.Controls.Add(this.button4);
-            this.groupBox1.Controls.Add(this.button3);
             this.groupBox1.Controls.Add(this.buttonSearcher);
             this.groupBox1.Controls.Add(this.textBoxSearch);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
@@ -182,15 +174,7 @@
             this.buttonPrintDocx.TabIndex = 18;
             this.buttonPrintDocx.Text = "docx";
             this.buttonPrintDocx.UseVisualStyleBackColor = true;
-            // 
-            // button6
-            // 
-            this.button6.Location = new System.Drawing.Point(441, 71);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(80, 40);
-            this.button6.TabIndex = 6;
-            this.button6.Text = ">>";
-            this.button6.UseVisualStyleBackColor = true;
+            this.buttonPrintDocx.Click += new System.EventHandler(this.buttonPrintDocx_Click);
             // 
             // groupBoxSort
             // 
@@ -427,33 +411,6 @@
             this.radioButtonAll.Text = "Все";
             this.radioButtonAll.UseVisualStyleBackColor = true;
             // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(297, 71);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(80, 40);
-            this.button5.TabIndex = 5;
-            this.button5.Text = ">";
-            this.button5.UseVisualStyleBackColor = true;
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(153, 71);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(80, 40);
-            this.button4.TabIndex = 4;
-            this.button4.Text = "<";
-            this.button4.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(10, 71);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(80, 40);
-            this.button3.TabIndex = 3;
-            this.button3.Text = "<<";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
             // buttonSearcher
             // 
             this.buttonSearcher.BackgroundImage = global::eSchool.Properties.Resources.loupe;
@@ -526,10 +483,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox textBoxSearch;
         private System.Windows.Forms.Button buttonSearcher;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button4;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button buttonReset;

@@ -24,12 +24,12 @@ namespace eSchool
             bool exit = false;
             for (int i = 0; i < this.MdiChildren.Length; i++)
             {
-                if (this.MdiChildren[i].Name== "addTeacherForm")
+                if (this.MdiChildren[i].Name == "addTeacherForm")
                 {
                     exit = true;
                 }
             }
-            if (exit==false)
+            if (exit == false)
             {
                 addTeacher.MdiParent = this;
                 addTeacher.Show();
@@ -105,6 +105,78 @@ namespace eSchool
             {
                 manageTeacher.MdiParent = this;
                 manageTeacher.Show();
+            }
+        }
+
+        private void добавитьToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            addSubjectForm addSubject = new addSubjectForm();
+            bool exit = false;
+            for (int i = 0; i < this.MdiChildren.Length; i++)
+            {
+                if (this.MdiChildren[i].Name == "addSubjectForm")
+                {
+                    exit = true;
+                }
+            }
+            if (exit == false)
+            {
+                addSubject.MdiParent = this;
+                addSubject.Show();
+            }
+        }
+
+        private void изменитьToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            editsubjectForm editsubject = new editsubjectForm();
+            bool exit = false;
+            for (int i = 0; i < this.MdiChildren.Length; i++)
+            {
+                if (this.MdiChildren[i].Name == "editsubject")
+                {
+                    exit = true;
+                }
+            }
+            if (exit == false)
+            {
+                editsubject.MdiParent = this;
+                editsubject.Show();
+            }
+        }
+
+        private void управлятьToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            manageSubjectForm manageSubject = new manageSubjectForm();
+            bool exit = false;
+            for (int i = 0; i < this.MdiChildren.Length; i++)
+            {
+                if (this.MdiChildren[i].Name == "manageSubjectForm")
+                {
+                    exit = true;
+                }
+            }
+            if (exit == false)
+            {
+                manageSubject.MdiParent = this;
+                manageSubject.Show();
+            }
+        }
+
+        private void экспортToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            printSubjects printSubjects = new printSubjects();
+            bool exit = false;
+            for (int i = 0; i < this.MdiChildren.Length; i++)
+            {
+                if (this.MdiChildren[i].Name == "printSubjects")
+                {
+                    exit = true;
+                }
+            }
+            if (exit == false)
+            {
+                printSubjects.MdiParent = this;
+                printSubjects.Show();
             }
         }
     }

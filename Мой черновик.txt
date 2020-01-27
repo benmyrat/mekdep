@@ -1,0 +1,65 @@
+﻿//еще один метод для экспорт ворд документа с datagrid
+
+ private void ToCsV(DataGridView dGV, string filename)
+        {
+            string stOutput = "";
+            // Export titles:
+            string sHeaders = "";
+
+            for (int j = 0; j < dGV.Columns.Count; j++)
+                sHeaders = sHeaders.ToString() + Convert.ToString(dGV.Columns[j].HeaderText) + "\t";
+            stOutput += sHeaders + "\r\n";
+            // Export data.
+            for (int i = 0; i < dGV.RowCount - 1; i++)
+            {
+                string stLine = "";
+                for (int j = 0; j < dGV.Rows[i].Cells.Count; j++)
+                    stLine = stLine.ToString() + Convert.ToString(dGV.Rows[i].Cells[j].Value) + "\t";
+                stOutput += stLine + "\r\n";
+            }
+            Encoding utf8 = Encoding.GetEncoding(1251);
+            byte[] output = utf8.GetBytes(stOutput);
+            FileStream fs = new FileStream(filename, FileMode.Create);
+            BinaryWriter bw = new BinaryWriter(fs);
+            bw.Write(output, 0, output.Length); //write the encoded file
+            bw.Flush();
+            bw.Close();
+            fs.Close();
+        }
+
+        /* SaveFileDialog sfd = new SaveFileDialog();
+             sfd.Filter = "Word Documents (*.docx)|*.docx";
+             sfd.FileName = "export.docx";
+             if (sfd.ShowDialog() == DialogResult.OK)
+             {
+                 //ToCsV(dataGridView1, @"c:\export.xls");
+                 ToCsV(dataGridView1, sfd.FileName); // Here dataGridview1 is your grid view name 
+             }*/
+            /*
+                        TextWriter tw = new StreamWriter("gridviewcontent.doc");
+                        for (int x = 0; x < dataGridView1.Columns.Count; x++)
+                        {
+                            tw.Write(dataGridView1.Columns[x].HeaderText);
+                            if (x != dataGridView1.Columns.Count - 1)
+                            {
+                                tw.Write(", ");
+                            }
+                        }
+                        tw.WriteLine();
+                        //writing the data
+                        for (int x = 0; x < dataGridView1.Rows.Count - 1; x++)
+                        {
+                            for (int y = 0; y < dataGridView1.Columns.Count; y++)
+                            {
+                                tw.Write(dataGridView1.Rows[x].Cells[y].Value);
+                                if (y != dataGridView1.Columns.Count - 1)
+                                {
+                                    tw.Write(", ");
+                                }
+                            }
+                            tw.WriteLine();
+                        }
+                        tw.Close();*/
+
+
+    ////////////////////////////

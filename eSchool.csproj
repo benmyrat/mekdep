@@ -33,6 +33,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Office.Interop.Word, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Office.Interop.Word.15.0.4797.1003\lib\net20\Microsoft.Office.Interop.Word.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="MySql.Data, Version=8.0.18.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files (x86)\MySQL\MySQL Connector Net 8.0.18\Assemblies\v4.5.2\MySql.Data.dll</HintPath>
@@ -50,6 +54,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="addSubjectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="addSubjectForm.Designer.cs">
+      <DependentUpon>addSubjectForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="addTeacherForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -63,13 +73,27 @@
       <DependentUpon>authorizationForm.cs</DependentUpon>
     </Compile>
     <Compile Include="databaseConnection.cs" />
+    <Compile Include="editsubjectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="editsubjectForm.Designer.cs">
+      <DependentUpon>editsubjectForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="editTeacherForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="editTeacherForm.Designer.cs">
       <DependentUpon>editTeacherForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="iSubjectTableDB.cs" />
+    <Compile Include="iTeacherAndSubject.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="iTeacherAndSubject.Designer.cs">
+      <DependentUpon>iTeacherAndSubject.cs</DependentUpon>
+    </Compile>
     <Compile Include="iTeacherTableDB.cs" />
+    <Compile Include="iTeacher_iSubject.cs" />
     <Compile Include="listTeacherForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -82,11 +106,23 @@
     <Compile Include="MainMenu.Designer.cs">
       <DependentUpon>MainMenu.cs</DependentUpon>
     </Compile>
+    <Compile Include="manageSubjectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="manageSubjectForm.Designer.cs">
+      <DependentUpon>manageSubjectForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="manageTeacherForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="manageTeacherForm.Designer.cs">
       <DependentUpon>manageTeacherForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="printSubjects.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="printSubjects.Designer.cs">
+      <DependentUpon>printSubjects.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -96,14 +132,23 @@
     <Compile Include="statisticTeacherForm.Designer.cs">
       <DependentUpon>statisticTeacherForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="addSubjectForm.resx">
+      <DependentUpon>addSubjectForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="addTeacherForm.resx">
       <DependentUpon>addTeacherForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="authorizationForm.resx">
       <DependentUpon>authorizationForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="editsubjectForm.resx">
+      <DependentUpon>editsubjectForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="editTeacherForm.resx">
       <DependentUpon>editTeacherForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="iTeacherAndSubject.resx">
+      <DependentUpon>iTeacherAndSubject.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="listTeacherForm.resx">
       <DependentUpon>listTeacherForm.cs</DependentUpon>
@@ -111,8 +156,14 @@
     <EmbeddedResource Include="MainMenu.resx">
       <DependentUpon>MainMenu.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="manageSubjectForm.resx">
+      <DependentUpon>manageSubjectForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="manageTeacherForm.resx">
       <DependentUpon>manageTeacherForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="printSubjects.resx">
+      <DependentUpon>printSubjects.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -127,6 +178,7 @@
     <EmbeddedResource Include="statisticTeacherForm.resx">
       <DependentUpon>statisticTeacherForm.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -183,6 +235,9 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Мой черновик.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

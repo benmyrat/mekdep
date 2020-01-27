@@ -1,0 +1,3 @@
+id, surName, name, patronymic, gender, birthDate, address, mail, mobile, teacherPic
+1, Ковтун, Александр, Александрович, Мужчина, 12/20/1985 12:00:00 AM, Гагарина, 161, kovtun85@mail.ru, 84096365585, System.Byte[]
+2, Тотухов, Константин, Евгеньевич, Мужчина, 10/11/1988 12:00:00 AM, Кирова, 104, iamtotuhov@mail.ru, 84023698752, System.Byte[]
