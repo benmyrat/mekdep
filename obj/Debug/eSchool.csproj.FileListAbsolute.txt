@@ -24,3 +24,6 @@ D:\Development\MyProjects\C#\eSchool\obj\Debug\eSchool.addSubjectForm.resources
 D:\Development\MyProjects\C#\eSchool\obj\Debug\eSchool.editsubjectForm.resources
 D:\Development\MyProjects\C#\eSchool\obj\Debug\eSchool.manageSubjectForm.resources
 D:\Development\MyProjects\C#\eSchool\obj\Debug\eSchool.printSubjects.resources
+D:\Development\MyProjects\C#\eSchool\obj\Debug\eSchool.iTeacherAndSubject.resources
+D:\Development\MyProjects\C#\eSchool\obj\Debug\eSchool.addClassForm.resources
+D:\Development\MyProjects\C#\eSchool\obj\Debug\eSchool.editClassForm.resources

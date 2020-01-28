@@ -179,5 +179,58 @@ namespace eSchool
                 printSubjects.Show();
             }
         }
+
+        private void дополнительноОПрепедователяToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            iTeacherAndSubject teacherAndSubject = new iTeacherAndSubject();
+            bool exit = false;
+            for (int i = 0; i < this.MdiChildren.Length; i++)
+            {
+                if (this.MdiChildren[i].Name == "teacherAndSubject")
+                {
+                    exit = true;
+                }
+            }
+            if (exit == false)
+            {
+                teacherAndSubject.MdiParent = this;
+                teacherAndSubject.Show();
+            }
+        }
+
+        private void добавитьToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            addClassForm addClass = new addClassForm();
+            bool exit = false;
+            for (int i = 0; i < this.MdiChildren.Length; i++)
+            {
+                if (this.MdiChildren[i].Name == "addClass")
+                {
+                    exit = true;
+                }
+            }
+            if (exit == false)
+            {
+                addClass.MdiParent = this;
+                addClass.Show();
+            }
+        }
+
+        private void изменитToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            editClassForm editClass = new editClassForm(); bool exit = false;
+            for (int i = 0; i < this.MdiChildren.Length; i++)
+            {
+                if (this.MdiChildren[i].Name == "editClass")
+                {
+                    exit = true;
+                }
+            }
+            if (exit == false)
+            {
+                editClass.MdiParent = this;
+                editClass.Show();
+            }
+        }
     }
 }

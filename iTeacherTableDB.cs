@@ -131,8 +131,6 @@ namespace eSchool
         }
 
 
-
-
         public DataTable getAllTeachersListBox()
         {
             MySqlCommand command = new MySqlCommand("SELECT * FROM  `iteacher`", connection.getConnection);

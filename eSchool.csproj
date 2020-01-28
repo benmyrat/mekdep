@@ -54,6 +54,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="addClassForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="addClassForm.Designer.cs">
+      <DependentUpon>addClassForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="addSubjectForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -73,6 +79,12 @@
       <DependentUpon>authorizationForm.cs</DependentUpon>
     </Compile>
     <Compile Include="databaseConnection.cs" />
+    <Compile Include="editClassForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="editClassForm.Designer.cs">
+      <DependentUpon>editClassForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="editsubjectForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -85,6 +97,7 @@
     <Compile Include="editTeacherForm.Designer.cs">
       <DependentUpon>editTeacherForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="iClassTableDB.cs" />
     <Compile Include="iSubjectTableDB.cs" />
     <Compile Include="iTeacherAndSubject.cs">
       <SubType>Form</SubType>
@@ -132,6 +145,9 @@
     <Compile Include="statisticTeacherForm.Designer.cs">
       <DependentUpon>statisticTeacherForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="addClassForm.resx">
+      <DependentUpon>addClassForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="addSubjectForm.resx">
       <DependentUpon>addSubjectForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -140,6 +156,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="authorizationForm.resx">
       <DependentUpon>authorizationForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="editClassForm.resx">
+      <DependentUpon>editClassForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="editsubjectForm.resx">
       <DependentUpon>editsubjectForm.cs</DependentUpon>
@@ -237,6 +256,10 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Images\refresh.png" />
+    <None Include="Images\add.png" />
+    <None Include="Images\edit.png" />
+    <None Include="Images\delete.png" />
     <Content Include="Мой черновик.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
