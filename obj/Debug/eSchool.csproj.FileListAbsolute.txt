@@ -27,3 +27,12 @@ D:\Development\MyProjects\C#\eSchool\obj\Debug\eSchool.printSubjects.resources
 D:\Development\MyProjects\C#\eSchool\obj\Debug\eSchool.iTeacherAndSubject.resources
 D:\Development\MyProjects\C#\eSchool\obj\Debug\eSchool.addClassForm.resources
 D:\Development\MyProjects\C#\eSchool\obj\Debug\eSchool.editClassForm.resources
+D:\Development\MyProjects\C#\eSchool\obj\Debug\eSchool.manageClassForm.resources
+D:\Development\MyProjects\C#\eSchool\obj\Debug\eSchool.addStudentForm.resources
+D:\Development\MyProjects\C#\eSchool\obj\Debug\eSchool.fullStudentsListForm.resources
+D:\Development\MyProjects\C#\eSchool\obj\Debug\eSchool.editStudentForm.resources
+D:\Development\MyProjects\C#\eSchool\obj\Debug\eSchool.manageStudentForm.resources
+D:\Development\MyProjects\C#\eSchool\obj\Debug\eSchool.addScheduleForm.resources
+D:\Development\MyProjects\C#\eSchool\obj\Debug\eSchool.manageScheduleForm.resources
+D:\Development\MyProjects\C#\eSchool\obj\Debug\eSchool.editScheduleForm.resources
+D:\Development\MyProjects\C#\eSchool\obj\Debug\eSchool.fullMixAddForm.resources

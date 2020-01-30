@@ -10,73 +10,107 @@ using System.Reflection;
 using Excel = Microsoft.Office.Interop.Excel;
 using System.Data;
 using Word = Microsoft.Office.Interop.Word;
-//Word = 
+
 namespace eSchool
 {
-    public partial class manageTeacherForm : Form
+    public partial class manageStudentForm : Form
     {
-        public manageTeacherForm()
+        public manageStudentForm()
         {
             InitializeComponent();
         }
-        iTeacherTableDB iTeacher = new iTeacherTableDB();
-        private void manageTeacherForm_Load(object sender, EventArgs e)
+        iStudentTableDB iStudent = new iStudentTableDB();
+        public void fillGrid(MySqlCommand command)
         {
-            fillGrid(new MySqlCommand("SELECT `id`, `surName`, `name`, `patronymic`, `gender`, `birthDate`, " +
-                "`address`, `mail`, `mobile`, `teacherPic` FROM `iteacher`"));
-            if (radioButtonIdNo.Checked || radioButtonNo.Checked)
+            DataGridViewImageColumn picCol = new DataGridViewImageColumn();
+            dataGridView1.RowTemplate.Height = 160;
+            dataGridView1.DataSource = iStudent.getStudents(command);
+            picCol = (DataGridViewImageColumn)dataGridView1.Columns[7];
+            picCol.ImageLayout = DataGridViewImageCellLayout.Stretch;
+            labelALL.Text = "Общая количество учеников: " + dataGridView1.Rows.Count;
+            iClassTableDB iClass = new iClassTableDB();
+            comboBoxClassName1.DataSource = iClass.getCommand(new MySqlCommand("SELECT * FROM `iclass`"));
+            comboBoxClassName1.ValueMember = "className"; comboBoxClassName1.DisplayMember = "className";
+            comboBoxClassName2.DataSource = iClass.getCommand(new MySqlCommand("SELECT * FROM `iclass`"));
+            comboBoxClassName2.ValueMember = "className"; comboBoxClassName2.DisplayMember = "className";
+        }
+
+        private void manageStudentForm_Load(object sender, EventArgs e)
+        {
+            fillGrid(new MySqlCommand("SELECT `id`, `surName`, `name`, `patronymic`, `gender`, `birthDate`, `className_fk`,`studentPic` FROM `istudent`"));
+            if (radioButtonBdateNo.Checked || radioButtonClassNo.Checked)
             {
                 dateTimePicker1.Enabled = false;
                 dateTimePicker2.Enabled = false;
-                numericUpDown1.Enabled = false;
-                numericUpDown2.Enabled = false;
+                comboBoxClassName1.Enabled = false;
+                comboBoxClassName2.Enabled = false;
             }
         }
-        public void fillGrid(MySqlCommand command)
-        {
-            //тут список учителей будет
-            DataGridViewImageColumn picCol = new DataGridViewImageColumn();
-            dataGridView1.RowTemplate.Height = 155;
-            dataGridView1.DataSource = iTeacher.getTeachers(command);
-            //11 колонка для изображения
-            picCol = (DataGridViewImageColumn)dataGridView1.Columns[9];
-            picCol.ImageLayout = DataGridViewImageCellLayout.Stretch;
 
-            //Показываю кол-во учителей
-            labelTotalTeachers.Text = "Общая количество учителей: " + dataGridView1.Rows.Count;
-        }
-
-        private void buttonSearcher_Click(object sender, EventArgs e)
-        {
-            //Ищем нужных людей
-            string query = "SELECT `id`, `surName`, `name`, `patronymic`, `gender`, `birthDate`, `address`, `mail`, `mobile`, `teacherPic`" +
-                " FROM `iteacher` WHERE CONCAT(`surName`, `name`, `patronymic`, `address`, `mail`) LIKE '%" + textBoxSearch.Text + "%'";
-            MySqlCommand command = new MySqlCommand(query);
-            fillGrid(command);
-        }
-
-        private void radioButtonNo_CheckedChanged(object sender, EventArgs e)
-        {
-            dateTimePicker1.Enabled = false;
-            dateTimePicker2.Enabled = false;
-        }
-
-        private void radioButtonYES_CheckedChanged(object sender, EventArgs e)
+        private void radioButtonBdateYes_CheckedChanged(object sender, EventArgs e)
         {
             dateTimePicker1.Enabled = true;
             dateTimePicker2.Enabled = true;
         }
 
-        private void radioButtonIdNo_CheckedChanged(object sender, EventArgs e)
+        private void radioButtonBdateNo_CheckedChanged(object sender, EventArgs e)
         {
-            numericUpDown1.Enabled = false;
-            numericUpDown2.Enabled = false;
+            dateTimePicker1.Enabled = false;
+            dateTimePicker2.Enabled = false;
         }
 
-        private void radioButtonIdYES_CheckedChanged(object sender, EventArgs e)
+        private void radioButtonClassYes_CheckedChanged(object sender, EventArgs e)
         {
-            numericUpDown1.Enabled = true;
-            numericUpDown2.Enabled = true;
+            comboBoxClassName1.Enabled = true;
+            comboBoxClassName2.Enabled = true;
+        }
+
+        private void radioButtonClassNo_CheckedChanged(object sender, EventArgs e)
+        {
+            comboBoxClassName1.Enabled = false;
+            comboBoxClassName2.Enabled = false;
+        }
+
+        private void buttonReset_Click(object sender, EventArgs e)
+        {
+            radioButtonClassNo.Checked = true;
+            radioButtonBdateNo.Checked = true;
+            radioButtonALL.Checked = true;
+            comboBoxClassName1.Text = "";
+            comboBoxClassName2.Text = "";
+            dateTimePicker1.Value = DateTime.Now;
+            dateTimePicker2.Value = DateTime.Now;
+            textBoxSearch.Text = "";
+            fillGrid(new MySqlCommand("SELECT `id`, `surName`, `name`, `patronymic`, `gender`, `birthDate`, `className_fk`,`studentPic` FROM `istudent`"));
+            button.Text = "Развернуть";
+        }
+        private void button_Click(object sender, EventArgs e)
+        {
+            if (button.Text == "Развернуть")
+            {
+                MySqlCommand command = new MySqlCommand("SELECT * FROM `istudent`");
+                DataGridViewImageColumn picCol = new DataGridViewImageColumn();
+                dataGridView1.RowTemplate.Height = 130;
+                dataGridView1.DataSource = iStudent.getStudents(command);
+
+                picCol = (DataGridViewImageColumn)dataGridView1.Columns[11];
+                picCol.ImageLayout = DataGridViewImageCellLayout.Stretch;
+
+                labelALL.Text = "Общая количество учеников: " + dataGridView1.Rows.Count;
+                button.Text = "Свернуть";
+            }
+            else if (button.Text == "Свернуть")
+            {
+                fillGrid(new MySqlCommand("SELECT `id`, `surName`, `name`, `patronymic`, `gender`, `birthDate`, `className_fk`,`studentPic` FROM `istudent`"));
+                button.Text = "Развернуть";
+            }
+        }
+
+        private void buttonSearcher_Click(object sender, EventArgs e)
+        {
+            string query = "SELECT `id`, `surName`, `name`, `patronymic`, `gender`, `birthDate`, `className_fk`,`studentPic` FROM `istudent` WHERE CONCAT(`surName`, `name`, `patronymic`, `className_fk`) LIKE '%" + textBoxSearch.Text + "%'";
+            MySqlCommand command = new MySqlCommand(query);
+            fillGrid(command);
         }
 
         private void buttonSort_Click(object sender, EventArgs e)
@@ -84,63 +118,45 @@ namespace eSchool
             string query;
             MySqlCommand command;
 
-            if (radioButtonYES.Checked)
+            if (radioButtonBdateYes.Checked)
             {
                 //сортировка по дате
                 string date1 = dateTimePicker1.Value.ToString("yyyy-MM-dd");
                 string date2 = dateTimePicker2.Value.ToString("yyyy-MM-dd");
                 if (radioButtonMale.Checked)
                 {
-                    query = "SELECT `id`, `surName`, `name`, `patronymic`, `gender`, `birthDate`, `address`, `mail`, `mobile`, `teacherPic`" +
-                        " FROM `iteacher` WHERE `birthDate` BETWEEN '" + date1 + "' AND '" + date2 + "' AND gender='Мужчина'";
+                    query = "SELECT `id`, `surName`, `name`, `patronymic`, `gender`, `birthDate`, `className_fk`,`studentPic` FROM `istudent` WHERE `birthDate` BETWEEN '" + date1 + "' AND '" + date2 + "' AND gender='Мужчина'";
                 }
                 else if (radioButtonFemale.Checked)
                 {
-                    query = "SELECT `id`, `surName`, `name`, `patronymic`, `gender`, `birthDate`, `address`, `mail`, `mobile`, `teacherPic`" +
-                        " FROM `iteacher` WHERE `birthDate` BETWEEN '" + date1 + "' AND '" + date2 + "' AND gender='Женщина'";
+                    query = "SELECT `id`, `surName`, `name`, `patronymic`, `gender`, `birthDate`, `className_fk`,`studentPic` FROM `istudent` WHERE `birthDate` BETWEEN '" + date1 + "' AND '" + date2 + "' AND gender='Женщина'";
                 }
                 else
                 {
-                    query = "SELECT `id`, `surName`, `name`, `patronymic`, `gender`, `birthDate`, `address`, `mail`, `mobile`, `teacherPic`" +
-                        " FROM `iteacher` WHERE `birthDate` BETWEEN '" + date1 + "' AND '" + date2 + "'";
+                    query = "SELECT `id`, `surName`, `name`, `patronymic`, `gender`, `birthDate`, `className_fk`,`studentPic` FROM `istudent` WHERE `birthDate` BETWEEN '" + date1 + "' AND '" + date2 + "'";
                 }
                 command = new MySqlCommand(query);
                 fillGrid(command);
             }
-            else if (radioButtonIdYES.Checked)
+            else if (radioButtonClassYes.Checked)
             {
-                var id1 = Convert.ToInt32(numericUpDown1.Value);
-                var id2 = Convert.ToInt32(numericUpDown2.Value);
+                var cName1 = Convert.ToInt32(comboBoxClassName1.Text);
+                var cName2 = Convert.ToInt32(comboBoxClassName2.Text);
                 if (radioButtonMale.Checked)
                 {
-                    query = "SELECT `id`, `surName`, `name`, `patronymic`, `gender`, `birthDate`, `address`, `mail`, `mobile`, `teacherPic`" +
-                        " FROM `iteacher` WHERE `id` BETWEEN '" + id1 + "' AND '" + id2 + "' AND gender='Мужчина'";
+                    query = "SELECT `id`, `surName`, `name`, `patronymic`, `gender`, `birthDate`, `className_fk`,`studentPic` FROM `istudent` WHERE `className_fk` BETWEEN '" + cName1 + "' AND '" + cName2 + "' AND gender='Мужчина'";
                 }
                 else if (radioButtonFemale.Checked)
                 {
-                    query = "SELECT `id`, `surName`, `name`, `patronymic`, `gender`, `birthDate`, `address`, `mail`, `mobile`, `teacherPic`" +
-                        " FROM `iteacher` WHERE `id` BETWEEN '" + id1 + "' AND '" + id2 + "' AND gender='Женщина'";
+                    query = "SELECT `id`, `surName`, `name`, `patronymic`, `gender`, `birthDate`, `className_fk`,`studentPic` FROM `istudent` WHERE `className_fk` BETWEEN '" + cName1 + "' AND '" + cName2 + "' AND gender='Женщина'";
                 }
                 else
                 {
-                    query = "SELECT `id`, `surName`, `name`, `patronymic`, `gender`, `birthDate`, `address`, `mail`, `mobile`, `teacherPic`" +
-                        " FROM `iteacher` WHERE `id` BETWEEN '" + id1 + "' AND '" + id2 + "'";
+                    query = "SELECT `id`, `surName`, `name`, `patronymic`, `gender`, `birthDate`, `className_fk`,`studentPic` FROM `istudent` WHERE `className_fk` BETWEEN '" + cName1 + "' AND '" + cName2 + "'";
                 }
                 command = new MySqlCommand(query);
                 fillGrid(command);
             }
-        }
-
-        private void buttonReset_Click(object sender, EventArgs e)
-        {
-            radioButtonAll.Checked = true;
-            radioButtonIdNo.Checked = true;
-            radioButtonNo.Checked = true;
-            numericUpDown1.Value = 0;
-            numericUpDown2.Value = 0;
-            textBoxSearch.Text = "";
-            fillGrid(new MySqlCommand("SELECT `id`, `surName`, `name`, `patronymic`, `gender`, `birthDate`, " +
-                "`address`, `mail`, `mobile`, `teacherPic` FROM `iteacher`"));
         }
 
         private void buttonPrintTXT_Click(object sender, EventArgs e)
@@ -179,55 +195,6 @@ namespace eSchool
                 }
                 writer.Close();
                 MessageBox.Show("Текстовый файл сохранён", "Распечатка завершена успешна!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-        }
-
-        private void buttonPrintXlsx_Click(object sender, EventArgs e)
-        {
-            sFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-            sFileDialog.Title = "Сохранить как Excel";
-            sFileDialog.FileName = "";
-            sFileDialog.Filter = "Excel Файлы (2007|*.xlsx|Excel Files(.CSV)|*.csv";
-            if (sFileDialog.ShowDialog() != DialogResult.Cancel)
-            {
-                Cursor.Current = Cursors.WaitCursor;
-                Excel.Application excelApp = new Excel.Application();
-                excelApp.Application.Workbooks.Add(Type.Missing);
-
-                excelApp.Columns.ColumnWidth = 28;
-                /*                for (int i = 1; i < dataGridView1.Columns.Count + 1; i++)
-                                {
-                                    excelApp.Cells[i, 1] = dataGridView1.Columns[i - 1].HeaderText;
-                                }*/
-
-                for (int i = 1; i < dataGridView1.Columns.Count + 1; i++)
-                {
-                    excelApp.Cells[i] = dataGridView1.Columns[i - 1].HeaderText;
-                }
-                for (int i = 0; i < dataGridView1.Rows.Count; i++)
-                {
-                    for (int j = 0; j < dataGridView1.Columns.Count; j++)
-                    {
-                        excelApp.Cells[i + 2, j + 1] = dataGridView1.Rows[i].Cells[j].Value.ToString();
-                    }
-                }
-                excelApp.ActiveWorkbook.SaveCopyAs(sFileDialog.FileName.ToString());
-                excelApp.ActiveWorkbook.Saved = true;
-                excelApp.Quit();
-                MessageBox.Show("Сохранение выполнена");
-
-            }
-            Cursor.Current = Cursors.Default;
-        }
-
-        private void buttonPrintDocx_Click(object sender, EventArgs e)
-        {
-            SaveFileDialog sfd = new SaveFileDialog();
-            sfd.Filter = "Word Documents (*.docx)|*.docx";
-            sfd.FileName = "export.docx";
-            if (sfd.ShowDialog() == DialogResult.OK)
-            {
-                Export_Data_To_Word(dataGridView1, sfd.FileName);
             }
         }
         public void Export_Data_To_Word(DataGridView DGV, string filename)
@@ -305,5 +272,49 @@ namespace eSchool
                 oDoc.SaveAs2(filename);
             }
         }
+        private void buttonPrintDocx_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = "Word Documents (*.docx)|*.docx";
+            sfd.FileName = "export.docx";
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                Export_Data_To_Word(dataGridView1, sfd.FileName);
+            }
+        }
+
+        private void buttonPrintXlsx_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog sFileDialog = new SaveFileDialog();
+            sFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            sFileDialog.Title = "Сохранить как Excel";
+            sFileDialog.FileName = "";
+            sFileDialog.Filter = "Excel Файлы (2007|*.xlsx|Excel Files(.CSV)|*.csv";
+            if (sFileDialog.ShowDialog() != DialogResult.Cancel)
+            {
+                Cursor.Current = Cursors.WaitCursor;
+                Excel.Application excelApp = new Excel.Application();
+                excelApp.Application.Workbooks.Add(Type.Missing);
+
+                excelApp.Columns.ColumnWidth = 28;
+                for (int i = 1; i < dataGridView1.Columns.Count + 1; i++)
+                {
+                    excelApp.Cells[i] = dataGridView1.Columns[i - 1].HeaderText;
+                }
+                for (int i = 0; i < dataGridView1.Rows.Count; i++)
+                {
+                    for (int j = 0; j < dataGridView1.Columns.Count; j++)
+                    {
+                        excelApp.Cells[i + 2, j + 1] = dataGridView1.Rows[i].Cells[j].Value.ToString();
+                    }
+                }
+                excelApp.ActiveWorkbook.SaveCopyAs(sFileDialog.FileName.ToString());
+                excelApp.ActiveWorkbook.Saved = true;
+                excelApp.Quit();
+                MessageBox.Show("Сохранение выполнена");
+            }
+            Cursor.Current = Cursors.Default;
+        }
     }
 }
+

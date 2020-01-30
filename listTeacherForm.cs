@@ -41,7 +41,7 @@ namespace eSchool
             editTeacher.textBoxName.Text = dataGridView1.CurrentRow.Cells[2].Value.ToString();
             editTeacher.textBoxPname.Text = dataGridView1.CurrentRow.Cells[3].Value.ToString();
             //пол
-            if (dataGridView1.CurrentRow.Cells[4].Value.ToString() == "Female")
+            if (dataGridView1.CurrentRow.Cells[4].Value.ToString() == "Женский")
             {
                 editTeacher.radioButtonFemale.Checked = true;
             }

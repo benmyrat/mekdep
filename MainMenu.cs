@@ -232,5 +232,126 @@ namespace eSchool
                 editClass.Show();
             }
         }
+
+        private void управлятьToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            manageClassForm manageClass = new manageClassForm(); bool exit = false;
+            for (int i = 0; i < this.MdiChildren.Length; i++)
+            {
+                if (this.MdiChildren[i].Name == "manageClass")
+                {
+                    exit = true;
+                }
+            }
+            if (exit == false)
+            {
+                manageClass.MdiParent = this;
+                manageClass.Show();
+            }
+        }
+
+        private void добавитьToolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            addStudentForm addStudent = new addStudentForm(); bool exit = false;
+            for (int i = 0; i < this.MdiChildren.Length; i++)
+            {
+                if (this.MdiChildren[i].Name == "addStudent")
+                {
+                    exit = true;
+                }
+            }
+            if (exit == false)
+            {
+                addStudent.MdiParent = this;
+                addStudent.Show();
+            }
+        }
+
+        private void полныйСписокToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            fullStudentsListForm fullList = new fullStudentsListForm(); bool exit = false;
+            for (int i = 0; i < this.MdiChildren.Length; i++)
+            {
+                if (this.MdiChildren[i].Name == "fullList")
+                {
+                    exit = true;
+                }
+            }
+            if (exit == false)
+            {
+                fullList.MdiParent = this;
+                fullList.Show();
+            }
+        }
+
+        private void управлениеToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            manageStudentForm manageStudent = new manageStudentForm(); bool exit = false;
+            for (int i = 0; i < this.MdiChildren.Length; i++)
+            {
+                if (this.MdiChildren[i].Name == "manageStudent")
+                {
+                    exit = true;
+                }
+            }
+            if (exit == false)
+            {
+                manageStudent.MdiParent = this;
+                manageStudent.Show();
+            }
+        }
+
+        private void добавитьToolStripMenuItem4_Click(object sender, EventArgs e)
+        {
+            addScheduleForm addSchedule = new addScheduleForm(); bool exit = false;
+            for (int i = 0; i < this.MdiChildren.Length; i++)
+            {
+                if (this.MdiChildren[i].Name == "addSchedule")
+                {
+                    exit = true;
+                }
+            }
+            if (exit == false)
+            {
+                addSchedule.MdiParent = this;
+                addSchedule.Show();
+            }
+        }
+
+        private void изменитьToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            manageScheduleForm manageSchedule = new manageScheduleForm();
+            bool exit = false;
+            for (int i = 0; i < this.MdiChildren.Length; i++)
+            {
+                if (this.MdiChildren[i].Name == "manageSchedule")
+                {
+                    exit = true;
+                }
+            }
+            if (exit == false)
+            {
+                manageSchedule.MdiParent = this;
+                manageSchedule.Show();
+            }
+        }
+
+        private void добавитьToolStripMenuItem5_Click(object sender, EventArgs e)
+        {
+            fullMixAddForm fullMixAdd = new fullMixAddForm();
+            bool exit = false;
+            for (int i = 0; i < this.MdiChildren.Length; i++)
+            {
+                if (this.MdiChildren[i].Name == "fullMixAdd")
+                {
+                    exit = true;
+                }
+            }
+            if (exit == false)
+            {
+                fullMixAdd.MdiParent = this;
+                fullMixAdd.Show();
+            }
+        }
     }
 }

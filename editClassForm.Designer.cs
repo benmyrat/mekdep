@@ -166,9 +166,9 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.NumericUpDown numericUpDownNumberPupil;
-        private System.Windows.Forms.NumericUpDown numericUpDownClassRoom;
-        private System.Windows.Forms.ComboBox comboBoxClassName;
         private System.Windows.Forms.TextBox textBoxNewClassName;
+        internal System.Windows.Forms.NumericUpDown numericUpDownNumberPupil;
+        internal System.Windows.Forms.NumericUpDown numericUpDownClassRoom;
+        internal System.Windows.Forms.ComboBox comboBoxClassName;
     }
 }

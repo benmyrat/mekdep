@@ -60,6 +60,18 @@
     <Compile Include="addClassForm.Designer.cs">
       <DependentUpon>addClassForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="addScheduleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="addScheduleForm.Designer.cs">
+      <DependentUpon>addScheduleForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="addStudentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="addStudentForm.Designer.cs">
+      <DependentUpon>addStudentForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="addSubjectForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -85,6 +97,18 @@
     <Compile Include="editClassForm.Designer.cs">
       <DependentUpon>editClassForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="editScheduleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="editScheduleForm.Designer.cs">
+      <DependentUpon>editScheduleForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="editStudentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="editStudentForm.Designer.cs">
+      <DependentUpon>editStudentForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="editsubjectForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -97,7 +121,22 @@
     <Compile Include="editTeacherForm.Designer.cs">
       <DependentUpon>editTeacherForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="fullMix.cs" />
+    <Compile Include="fullMixAddForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fullMixAddForm.Designer.cs">
+      <DependentUpon>fullMixAddForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="fullStudentsListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fullStudentsListForm.Designer.cs">
+      <DependentUpon>fullStudentsListForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="iClassTableDB.cs" />
+    <Compile Include="iScheduleTableDB.cs" />
+    <Compile Include="iStudentTableDB.cs" />
     <Compile Include="iSubjectTableDB.cs" />
     <Compile Include="iTeacherAndSubject.cs">
       <SubType>Form</SubType>
@@ -118,6 +157,24 @@
     </Compile>
     <Compile Include="MainMenu.Designer.cs">
       <DependentUpon>MainMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="manageClassForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="manageClassForm.Designer.cs">
+      <DependentUpon>manageClassForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="manageScheduleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="manageScheduleForm.Designer.cs">
+      <DependentUpon>manageScheduleForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="manageStudentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="manageStudentForm.Designer.cs">
+      <DependentUpon>manageStudentForm.cs</DependentUpon>
     </Compile>
     <Compile Include="manageSubjectForm.cs">
       <SubType>Form</SubType>
@@ -148,6 +205,12 @@
     <EmbeddedResource Include="addClassForm.resx">
       <DependentUpon>addClassForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="addScheduleForm.resx">
+      <DependentUpon>addScheduleForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="addStudentForm.resx">
+      <DependentUpon>addStudentForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="addSubjectForm.resx">
       <DependentUpon>addSubjectForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -160,11 +223,23 @@
     <EmbeddedResource Include="editClassForm.resx">
       <DependentUpon>editClassForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="editScheduleForm.resx">
+      <DependentUpon>editScheduleForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="editStudentForm.resx">
+      <DependentUpon>editStudentForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="editsubjectForm.resx">
       <DependentUpon>editsubjectForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="editTeacherForm.resx">
       <DependentUpon>editTeacherForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fullMixAddForm.resx">
+      <DependentUpon>fullMixAddForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fullStudentsListForm.resx">
+      <DependentUpon>fullStudentsListForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="iTeacherAndSubject.resx">
       <DependentUpon>iTeacherAndSubject.cs</DependentUpon>
@@ -174,6 +249,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainMenu.resx">
       <DependentUpon>MainMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="manageClassForm.resx">
+      <DependentUpon>manageClassForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="manageScheduleForm.resx">
+      <DependentUpon>manageScheduleForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="manageStudentForm.resx">
+      <DependentUpon>manageStudentForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="manageSubjectForm.resx">
       <DependentUpon>manageSubjectForm.cs</DependentUpon>

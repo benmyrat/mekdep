@@ -17,7 +17,6 @@ namespace eSchool
             MySqlDataAdapter adapter = new MySqlDataAdapter(command);
             DataTable table = new DataTable();
             adapter.Fill(table);
-
             return table;
         }
         public bool insertTeacherSubject(string fkT, string fkS)
@@ -73,7 +72,7 @@ namespace eSchool
                 return false;
             }
         }
-        
+
         public DataTable fullTeacherData(MySqlCommand command)
         {
             command.Connection = connection.getConnection;
