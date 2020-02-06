@@ -24,8 +24,8 @@ namespace eSchool
             double totalMale = Convert.ToDouble(iTeacher.totalMale());
             double totalFemale = Convert.ToDouble(iTeacher.totalFemale());
 
-            double malePercentage = totalMale * 100 / totalMale;
-            double femalePercentage = totalFemale * 100 / totalFemale;
+            double malePercentage = totalMale * 100 / totalTeacher;
+            double femalePercentage = totalFemale * 100 / totalTeacher;
             labelTotal.Text = "Общая количество учителей: " + totalTeacher.ToString();
             labelMale.Text = "Мужчины: " + malePercentage.ToString("0.00") + "%";
             labelFemale.Text = "Женщины: " + femalePercentage.ToString("0.00") + "%";

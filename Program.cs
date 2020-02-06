@@ -16,7 +16,7 @@ namespace eSchool
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            /*Application.Run(new MainMenu());*/
+         /*   Application.Run(new MainMenu());*/
             authorizationForm fLogin = new authorizationForm();
             if (fLogin.ShowDialog() == DialogResult.OK)
             {

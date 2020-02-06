@@ -63,3 +63,126 @@
 
 
     ////////////////////////////
+
+
+
+    Я еще не смог до конца разобраться с комбобокс
+    на mysql commandе все работает проверил но проблема у меня только в не знание языка... :/
+
+
+    //ниже будет блоки кода где я не понял
+
+    //SELECT a.id, a.subject_fk, a.iTeacher_fk, b.name, b.patronymic, b.teacherPic FROM iteacher_has_subject a, iteacher b  
+            //WHERE a.iTeacher_fk = b.`id`
+            //SELECT a.id, b.surName FROM iteacher_has_subject a, iteacher b WHERE a.iTeacher_fk=b.id
+            /*comboBoxTeacherS.DataSource = iT_iS.getTeacher_Subject(new MySqlCommand("SELECT a.id, b.surName FROM iteacher_has_subject a, iteacher b WHERE a.iTeacher_fk=b.id"));
+            comboBoxTeacherS.ValueMember = "id";
+            comboBoxTeacherS.DisplayMember = "id"; comboBoxTeacherS.SelectedItem = null;
+            comboBoxTeacherS.SelectedValue = comboBoxTeacherS.SelectedItem.GetType();
+            comboBoxTeacherN.DataSource = iT_iS.getTeacher_Subject(new MySqlCommand("SELECT a.id, b.surName, b.name FROM iteacher_has_subject a, iteacher b WHERE a.iTeacher_fk=b.id" +
+                " AND a.id=" + comboBoxTeacherS.SelectedValue));
+*/
+
+// comboBoxTeacherN.ValueMember = "id";
+            /*comboBoxTeacherN.DisplayMember = "name"; comboBoxTeacherN.SelectedItem = null;*//*
+            comboBoxTeacherP.DataSource = iT_iS.getTeacher_Subject(new MySqlCommand("SELECT a.id, b.patronymic FROM iteacher_has_subject a, iteacher b WHERE a.iTeacher_fk=b.id"));
+            comboBoxTeacherP.ValueMember = "patronymic";
+            comboBoxTeacherP.DisplayMember = "patronymic"; comboBoxTeacherP.SelectedItem = null;*/
+
+            /* comboBoxSubject.DataSource = iT_iS.getTeacher_Subject(new MySqlCommand("SELECT * FROM `iteacher_has_subject`"));
+             comboBoxSubject.ValueMember = "id";
+             comboBoxSubject.DisplayMember = "subject_fk"; comboBoxSubject.SelectedItem = null;
+             comboBoxScheduleD.DataSource = iSchedule.getCommand(new MySqlCommand("SELECT * FROM `ischedule`"));
+             comboBoxScheduleD.ValueMember = "id"; comboBoxScheduleD.DisplayMember = "id"; comboBoxScheduleD.SelectedItem = null;
+
+             comboBoxScheduleSt.DataSource = iSchedule.getCommand(new MySqlCommand("SELECT * FROM `ischedule` WHERE `id`=" + ""));
+             comboBoxScheduleSt.ValueMember = "startTime"; comboBoxScheduleSt.DisplayMember = "startTime"; comboBoxScheduleSt.SelectedItem = null;
+             comboBoxClassName.DataSource = iClass.getCommand(new MySqlCommand("SELECT * FROM `iclass`"));
+             comboBoxClassName.ValueMember = "className"; comboBoxClassName.DisplayMember = "className"; comboBoxClassName.SelectedItem = null;
+        */
+
+        /*
+            int tSubject = Convert.ToInt32(comboBoxTeacherS.SelectedValue.ToString());
+            string cName = comboBoxClassName.SelectedText;*/
+            /* int schedule = Convert.ToInt32(comboBoxSchedule.SelectedText);
+             if (fullMix.insertFULL(tSubject, cName, schedule))
+             {
+                 MessageBox.Show("DONE");
+             }*/
+
+
+
+
+
+
+
+
+
+
+             __________________________________________________________________________________
+
+             using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using MySql.Data.MySqlClient;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace eSchool
+{
+    public partial class fullMixAddForm : Form
+    {
+        public fullMixAddForm()
+        {
+            InitializeComponent();
+        }
+        fullMix fullMix = new fullMix(); iClassTableDB iClass = new iClassTableDB();
+        iTeacher_iSubject iT_iS = new iTeacher_iSubject(); iScheduleTableDB iSchedule = new iScheduleTableDB();
+        private void fullMixAddForm_Load(object sender, EventArgs e)
+        {
+            comboBoxTeacherSubject.DataSource = fullMix.getFullMixCommand(new MySqlCommand("SELECT * FROM `iTeacher_has_subject`"));
+            comboBoxTeacherSubject.ValueMember = "id";
+            comboBoxTeacherSubject.DisplayMember = "id"; comboBoxTeacherSubject.SelectedItem = null;
+            comboBoxClassName.DataSource = fullMix.getFullMixCommand(new MySqlCommand("SELECT * FROM `iclass`"));
+            comboBoxClassName.ValueMember = "className";
+            comboBoxClassName.DisplayMember = "className"; comboBoxClassName.SelectedItem = null;
+            comboBoxScheduleD.DataSource = fullMix.getFullMixCommand(new MySqlCommand("SELECT * FROM `ischedule`"));
+            comboBoxScheduleD.ValueMember = "id";
+            comboBoxScheduleD.DisplayMember = "day"; comboBoxScheduleD.SelectedItem = null;
+            comboBoxScheduleSt.DataSource = fullMix.getFullMixCommand(new MySqlCommand("SELECT * FROM `ischedule`"));
+            comboBoxScheduleSt.ValueMember = "id";
+            comboBoxScheduleSt.DisplayMember = "startTime"; comboBoxScheduleSt.SelectedItem = null;
+            comboBoxScheduleFt.DataSource = fullMix.getFullMixCommand(new MySqlCommand("SELECT * FROM `ischedule`"));
+            comboBoxScheduleFt.ValueMember = "id";
+            comboBoxScheduleFt.DisplayMember = "finishTime"; comboBoxScheduleFt.SelectedItem = null;
+            
+        }
+
+        private void buttonAdd_Click(object sender, EventArgs e)
+        {
+            int teacherSubject = Convert.ToInt32(comboBoxTeacherSubject.SelectedValue.ToString());
+            string cName = comboBoxClassName.Text;
+            int schedule = Convert.ToInt32(comboBoxScheduleFt.SelectedValue.ToString());
+
+            if (fullMix.insertFULL(teacherSubject, cName, schedule))
+            {
+                MessageBox.Show("Расписание добавлен", "Успешно!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Извините что-то не так", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void comboBoxTeacherSubject_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (comboBoxTeacherSubject.SelectedIndex != -1)
+            {
+                comboBoxTeacherSubject.Text = comboBoxTeacherSubject.SelectedValue.ToString();
+            }
+        }
+    }
+}

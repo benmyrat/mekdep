@@ -27,12 +27,13 @@ namespace eSchool
             connection.openConnection();
             return table;
         }
+        //INSERT INTO `class_has_iteacher_has_subject_has_schedule` (`id`, `iTeacher_has_subject_fk`, `iclass_fk`, `ischedule_fk`) VALUES (NULL, '28', '1-А', '2');
         public bool insertFULL(int tSubject, string cName, int Schedule)
         {
             MySqlCommand command = new MySqlCommand("INSERT INTO `class_has_iteacher_has_subject_has_schedule`(`iTeacher_has_subject_fk`, `iclass_fk`, `ischedule_fk`) VALUES (@Tsubject,@cName,@schedule)", connection.getConnection);
             command.Parameters.Add("@Tsubject", MySqlDbType.Int32).Value = tSubject;
-            command.Parameters.Add("@cName", MySqlDbType.VarChar).Value = tSubject;
-            command.Parameters.Add("@schedule", MySqlDbType.Int32).Value = tSubject;
+            command.Parameters.Add("@cName", MySqlDbType.VarChar).Value = cName;
+            command.Parameters.Add("@schedule", MySqlDbType.Int32).Value = Schedule;
             connection.openConnection();
             if (command.ExecuteNonQuery() == 1)
             {

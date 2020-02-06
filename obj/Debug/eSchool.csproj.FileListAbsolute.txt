@@ -36,3 +36,4 @@ D:\Development\MyProjects\C#\eSchool\obj\Debug\eSchool.addScheduleForm.resources
 D:\Development\MyProjects\C#\eSchool\obj\Debug\eSchool.manageScheduleForm.resources
 D:\Development\MyProjects\C#\eSchool\obj\Debug\eSchool.editScheduleForm.resources
 D:\Development\MyProjects\C#\eSchool\obj\Debug\eSchool.fullMixAddForm.resources
+D:\Development\MyProjects\C#\eSchool\obj\Debug\eSchool.manageFullMix.resources

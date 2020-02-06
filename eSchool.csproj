@@ -164,6 +164,12 @@
     <Compile Include="manageClassForm.Designer.cs">
       <DependentUpon>manageClassForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="manageFullMix.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="manageFullMix.Designer.cs">
+      <DependentUpon>manageFullMix.cs</DependentUpon>
+    </Compile>
     <Compile Include="manageScheduleForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -252,6 +258,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="manageClassForm.resx">
       <DependentUpon>manageClassForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="manageFullMix.resx">
+      <DependentUpon>manageFullMix.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="manageScheduleForm.resx">
       <DependentUpon>manageScheduleForm.cs</DependentUpon>

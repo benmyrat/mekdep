@@ -353,5 +353,23 @@ namespace eSchool
                 fullMixAdd.Show();
             }
         }
+
+        private void управлятьToolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            manageFullMix manageFullMix = new manageFullMix();
+            bool exit = false;
+            for (int i = 0; i < this.MdiChildren.Length; i++)
+            {
+                if (this.MdiChildren[i].Name == "fullMixAdd")
+                {
+                    exit = true;
+                }
+            }
+            if (exit == false)
+            {
+                manageFullMix.MdiParent = this;
+                manageFullMix.Show();
+            }
+        }
     }
 }
